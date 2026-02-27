@@ -27,7 +27,7 @@ function App() {
 
   return (
     <div style={containerStyle}>
-      <h1>Тест React для Voluntrack 🚀</h1>
+      <h1>Тест React</h1>
       <p>Якщо ти бачиш це, твій фронтенд-проєкт запущено успішно.</p>
       
       <div style={{ fontSize: '24px', fontWeight: 'bold' }}>
