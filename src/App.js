@@ -28,7 +28,7 @@ function App() {
   return (
     <div style={containerStyle}>
       <h1>Тест React</h1>
-      <p>Якщо ти бачиш це, твій фронтенд-проєкт запущено успішно.</p>
+      <p><b>Якщо ти бачиш це, твій фронтенд-проєкт запущено успішно.</b></p>
       
       <div style={{ fontSize: '24px', fontWeight: 'bold' }}>
         Кількість тестів: {count}
