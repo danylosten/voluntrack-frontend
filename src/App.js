@@ -1,47 +1,104 @@
 import React, { useState } from 'react';
+const CenteredSquareForm = () => {
+  // Хуки стану для логіну та пароля
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
 
-function App() {
-  // Створюємо стан для лічильника
-  const [count, setCount] = useState(0);
-
-  const containerStyle = {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: '100vh',
-    fontFamily: 'Segoe UI, Tahoma, Geneva, Verdana, sans-serif',
-    backgroundColor: '#f0f2f5'
+  // Обробник відправки форми (можна замінити на axios/fetch)
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Запобігаємо перезавантаженню сторінки
+    console.log(`Запит на вхід: Логін = ${login}, Пароль = ${password}`);
+    // Тут можна викликати FastAPI ендпоінт для аутентифікації
+    alert(`Спроба входу для: ${login}`);
   };
 
+  // Стилі для фону (на весь екран)
+  const backgroundStyle = {
+    display: 'flex',
+    justifyContent: 'center', // Центруємо по горизонталі
+    alignItems: 'center',     // Центруємо по вертикалі
+    minHeight: '100vh',
+    width: '100%',
+    backgroundColor: '#f0f2f5', // Легкий сірий фон
+    margin: 0,
+    padding: '20px',          // Відступ, щоб квадрат не торкався країв на мобільних
+    boxSizing: 'border-box'
+  };
+
+  // Стилі для білого квадратного поля з формою
+  const squareStyle = {
+    width: '320px',           // Ширина квадрата
+    minHeight: '320px',       // Мінімальна висота (трохи адаптивна)
+    height: 'auto',           // Висота підлаштовується під контент
+    backgroundColor: '#ffffff',
+    borderRadius: '15px',
+    boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)',
+    display: 'flex',
+    flexDirection: 'column', // Елементи всередині йдуть один під одним
+    justifyContent: 'center',
+    padding: '30px',          // Відступи всередині
+    boxSizing: 'border-box'
+  };
+
+  // Загальні стилі для полів введення
+  const inputStyle = {
+    width: '100%',
+    padding: '12px',
+    margin: '10px 0',          // Відступи зверху та знизу
+    border: '1px solid #ddd', // Тонка сіра межа
+    borderRadius: '8px',
+    fontSize: '16px',
+    boxSizing: 'border-box'
+  };
+
+  // Стилі для кнопки
   const buttonStyle = {
-    padding: '10px 20px',
-    fontSize: '18px',
-    cursor: 'pointer',
-    backgroundColor: '#007bff',
-    color: 'white',
+    width: '100%',
+    padding: '12px',
+    backgroundColor: '#4a90e2', // Синій колір
+    color: '#ffffff',
     border: 'none',
     borderRadius: '8px',
-    marginTop: '20px'
+    fontSize: '16px',
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    marginTop: '15px',
+    transition: 'background-color 0.3s ease' // Плавний ефект при наведенні
   };
 
   return (
-    <div style={containerStyle}>
-      <h1>Тест React</h1>
-      <p><b>Якщо ти бачиш це, твій фронтенд-проєкт запущено успішно.</b></p>
-      
-      <div style={{ fontSize: '24px', fontWeight: 'bold' }}>
-        Кількість тестів: {count}
-      </div>
-
-      <button 
-        style={buttonStyle}
-        onClick={() => setCount(count + 1)}
-      >
-        Натисни мене!
-      </button>
+    <div style={backgroundStyle}>
+      <form style={squareStyle} onSubmit={handleSubmit}>
+        <h2 style={{ textAlign: 'center', color: '#333', marginBottom: '20px' }}>Вхід</h2>
+        
+        {/* Поле Логіну */}
+        <input
+          type="text"
+          placeholder="Логін"
+          value={login}
+          onChange={(e) => setLogin(e.target.value)}
+          style={inputStyle}
+          required // Обов'язкове поле
+        />
+        
+        {/* Поле Пароля */}
+        <input
+          type="password"
+          placeholder="Пароль"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          style={inputStyle}
+          required // Обов'язкове поле
+        />
+        
+        {/* Кнопка входу */}
+        <button type="submit" style={buttonStyle}>
+          Увійти
+        </button>
+      </form>
     </div>
   );
-}
+};
 
-export default App;
+export default CenteredSquareForm;
+
