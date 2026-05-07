@@ -34,11 +34,11 @@ const styles = {
   },
   loginButton: {
     padding: '8px 20px',
-    backgroundColor: '#007bff',
+    backgroundColor: '#0088FF',
     color: 'white',
     textDecoration: 'none',
     borderRadius: '5px',
-    fontWeight: '500'
+    fontWeight: '500',
   }
 };
 

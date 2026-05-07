@@ -6,8 +6,8 @@ function Home() {
     <div>
       <Header />
       <main style={{ padding: '40px', textAlign: 'center' }}>
-        <h1>Головна сторінка Voluntrack</h1>
-        <p>Тут буде контент головної сторінки...</p>
+        <h1>Welcome to Voluntrack</h1>
+        <p>This is the main page content...</p>
       </main>
     </div>
   );
