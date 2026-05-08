@@ -1,7 +1,8 @@
 // src/pages/auth/WelcomeScreen.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Додаємо хук для навігації
 
-// Іконки-заглушки (заміни на SVG або іконки з бібліотеки)
+// Іконки-заглушки
 const StarIcon = () => <span>⭐</span>;
 const MessageIcon = () => <span>💬</span>;
 const AwardIcon = () => <span>🏆</span>;
@@ -18,10 +19,12 @@ const FeatureCard = ({ icon, title, desc }) => (
   </div>
 );
 
-export const WelcomeScreen = ({ onStart, onLogin }) => {
+export const WelcomeScreen = () => {
+  const navigate = useNavigate(); // Створюємо функцію для перемикання сторінок
+
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-6 pt-12 pb-10 relative overflow-hidden">
-      {/* Фонові м'які плями (як на макеті) */}
+      {/* Фонові м'які плями */}
       <div className="absolute top-10 left-10 w-64 h-64 bg-gray-100 rounded-full blur-3xl opacity-60"></div>
       <div className="absolute bottom-20 right-10 w-72 h-72 bg-gray-100 rounded-full blur-3xl opacity-60"></div>
 
@@ -59,13 +62,15 @@ export const WelcomeScreen = ({ onStart, onLogin }) => {
         {/* Кнопки дій */}
         <div className="w-full space-y-4">
           <button 
-            onClick={onStart}
+            // Перехід на екран вибору ролі
+            onClick={() => navigate('/role-selection')}
             className="w-full py-4 bg-black text-white rounded-2xl font-semibold text-base shadow-lg hover:bg-zinc-800 transition-colors"
           >
             Розпочати
           </button>
           <button 
-            onClick={onLogin}
+            // Перехід на екран логіну
+            onClick={() => navigate('/login')}
             className="w-full py-4 bg-white text-black rounded-2xl font-semibold text-base border border-gray-200 hover:bg-gray-50 transition-colors"
           >
             Увійти

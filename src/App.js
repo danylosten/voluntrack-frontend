@@ -1,56 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { WelcomeScreen as Welcome } from './pages/Welcome';
 import { LoginScreen as Login } from './pages/Login';
 import { RoleSelection } from './pages/RoleSelection';
-import { EmailVerification } from './pages/EmailVerification'; // 1. Імпортуємо новий екран
+import { EmailVerification } from './pages/EmailVerification'; 
+import { OrganizationForm } from './pages/OrganizationForm'; 
 import Home from './pages/Home';
 import './App.css';
 
 function App() {
-  // Додали стан 'verify-email'
-  const [currentScreen, setCurrentScreen] = useState('welcome');
-
-  const handleRoleSelect = (roleId) => {
-    console.log('Вибрана роль:', roleId);
-    // Після вибору ролі зазвичай йде реєстрація, але поки залишимо так
-  };
-
   return (
     <div className="App">
-      {currentScreen === 'welcome' && (
-        <Welcome 
-          onStart={() => setCurrentScreen('role-selection')} 
-          onLogin={() => setCurrentScreen('login')} 
-        />
-      )}
-
-      {currentScreen === 'role-selection' && (
-        <RoleSelection 
-          onLogin={() => setCurrentScreen('login')}
-          onSelectRole={handleRoleSelect}
-          onBack={() => setCurrentScreen('welcome')}
-        />
-      )}
-
-      {currentScreen === 'login' && (
-        <Login 
-          onBack={() => setCurrentScreen('welcome')}
-          // 2. ЗМІНА ТУТ: Після успішного входу йдемо на екран перевірки пошти
-          onSuccess={() => setCurrentScreen('verify-email')} 
-        />
-      )}
-
-      {/* 3. ДОДАЄМО ЕКРАН ПЕРЕВІРКИ ПОШТИ */}
-      {currentScreen === 'verify-email' && (
-        <EmailVerification
-          onConfirm={() => setCurrentScreen('home')} // Демо-перехід на головну після "підтвердження"
-          onLoginInstead={() => setCurrentScreen('login')}
-        />
-      )}
-
-      {currentScreen === 'home' && (
-        <Home onLogout={() => setCurrentScreen('welcome')} />
-      )}
+      <Routes>
+        <Route path="/" element={<Welcome />} />
+        <Route path="/role-selection" element={<RoleSelection />} />
+        <Route path="/register/organization" element={<OrganizationForm />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/verify-email" element={<EmailVerification />} />
+        <Route path="/home" element={<Home />} />
+        {/* Автоматичне повернення на головну, якщо адреса невірна */}
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
     </div>
   );
 }
