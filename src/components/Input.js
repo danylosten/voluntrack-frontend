@@ -9,7 +9,7 @@ const IconWrapper = ({ icon, className }) => {
 export const Input = ({ label, icon, type = "text", error, ...props }) => {
   return (
     <div className="w-full mb-4">
-      {label && <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>}
+      {label && <label className="block text-left text-sm font-medium text-gray-700 mb-1.5">{label}</label>}
       <div className="relative flex items-center">
         {icon && <IconWrapper icon={icon} />}
         <input

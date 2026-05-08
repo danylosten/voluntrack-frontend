@@ -1,26 +1,25 @@
 import React, { useState } from 'react';
 import { WelcomeScreen as Welcome } from './pages/Welcome';
 import { LoginScreen as Login } from './pages/Login';
-import { RoleSelection } from './pages/RoleSelection'; // Імпортуємо новий екран
+import { RoleSelection } from './pages/RoleSelection';
+import { EmailVerification } from './pages/EmailVerification'; // 1. Імпортуємо новий екран
 import Home from './pages/Home';
 import './App.css';
 
 function App() {
-  // Стани: 'welcome', 'login', 'role-selection', 'home'
+  // Додали стан 'verify-email'
   const [currentScreen, setCurrentScreen] = useState('welcome');
 
-  // Функція для обробки вибору конкретної ролі
   const handleRoleSelect = (roleId) => {
     console.log('Вибрана роль:', roleId);
-    // Наступним кроком тут буде перехід на форму реєстрації для конкретної ролі
-    // setCurrentScreen(`register-${roleId}`); 
+    // Після вибору ролі зазвичай йде реєстрація, але поки залишимо так
   };
 
   return (
     <div className="App">
       {currentScreen === 'welcome' && (
         <Welcome 
-          onStart={() => setCurrentScreen('role-selection')} // Переходимо на вибір ролі
+          onStart={() => setCurrentScreen('role-selection')} 
           onLogin={() => setCurrentScreen('login')} 
         />
       )}
@@ -29,14 +28,23 @@ function App() {
         <RoleSelection 
           onLogin={() => setCurrentScreen('login')}
           onSelectRole={handleRoleSelect}
-          onBack={() => setCurrentScreen('welcome')} // Додай цей рядок
+          onBack={() => setCurrentScreen('welcome')}
         />
       )}
 
       {currentScreen === 'login' && (
         <Login 
           onBack={() => setCurrentScreen('welcome')}
-          onSuccess={() => setCurrentScreen('home')} 
+          // 2. ЗМІНА ТУТ: Після успішного входу йдемо на екран перевірки пошти
+          onSuccess={() => setCurrentScreen('verify-email')} 
+        />
+      )}
+
+      {/* 3. ДОДАЄМО ЕКРАН ПЕРЕВІРКИ ПОШТИ */}
+      {currentScreen === 'verify-email' && (
+        <EmailVerification
+          onConfirm={() => setCurrentScreen('home')} // Демо-перехід на головну після "підтвердження"
+          onLoginInstead={() => setCurrentScreen('login')}
         />
       )}
 
