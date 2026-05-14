@@ -1,25 +1,18 @@
 import React from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import { WelcomeScreen as Welcome } from './pages/Welcome';
-import { LoginScreen as Login } from './pages/Login';
+import { Routes, Route } from 'react-router-dom';
+import { WelcomeScreen } from './pages/Welcome';
 import { RoleSelection } from './pages/RoleSelection';
-import { EmailVerification } from './pages/EmailVerification'; 
-import { OrganizationForm } from './pages/OrganizationForm'; 
-import Home from './pages/Home';
-import './App.css';
+import { OrganizationForm } from './pages/OrganizationForm';
+import { LoginScreen } from './pages/Login';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Welcome />} />
+        <Route path="/" element={<WelcomeScreen />} />
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/register/organization" element={<OrganizationForm />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/verify-email" element={<EmailVerification />} />
-        <Route path="/home" element={<Home />} />
-        {/* Автоматичне повернення на головну, якщо адреса невірна */}
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/login" element={<LoginScreen />} />
       </Routes>
     </div>
   );
