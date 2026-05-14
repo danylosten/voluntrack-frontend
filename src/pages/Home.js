@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const Home = () => {
   const navigate = useNavigate();
+  const [showCloseModal, setShowCloseModal] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white flex flex-col pb-32">
+    <div className="min-h-screen bg-white flex flex-col pb-32 relative">
       {/* Шапка */}
       <header className="px-6 pt-8 pb-4 flex justify-between items-center">
         <div>
@@ -78,28 +79,55 @@ export const Home = () => {
                 <div className="w-[65%] h-full bg-black rounded-full transition-all duration-500"></div>
              </div>
 
-             {/* НОВІ РОБОЧІ КНОПКИ З ФОТО */}
              <div className="grid grid-cols-2 gap-3 mb-3">
                 <button 
-                  onClick={() => navigate('/edit-project')} // Перехід на редагування
+                  onClick={() => navigate('/edit-project')}
                   className="py-4 bg-[#E5E7EB] text-black rounded-2xl font-bold text-xs hover:bg-gray-300 transition-colors"
                 >
                   Редагувати
                 </button>
                 <button 
-                  onClick={() => navigate('/project-stats')} // Перехід на статистику збору
+                  onClick={() => navigate('/project-stats')}
                   className="py-4 bg-[#E5E7EB] text-black rounded-2xl font-bold text-xs hover:bg-gray-300 transition-colors"
                 >
                   Статистика
                 </button>
              </div>
 
-             <button className="w-full py-4 border border-gray-100 rounded-2xl text-[11px] font-bold text-gray-300 hover:text-red-400 transition-colors">
+             <button 
+                onClick={() => setShowCloseModal(true)}
+                className="w-full py-4 border border-gray-100 rounded-2xl text-[11px] font-bold text-gray-300 hover:text-red-400 transition-colors"
+             >
                 Закрити збір
              </button>
           </div>
         </div>
       </div>
+
+      {/* Модальне вікно підтвердження (Close Modal) */}
+      {showCloseModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/50 backdrop-blur-sm p-6">
+          <div className="bg-white rounded-[40px] w-full max-w-md p-10 flex flex-col items-center text-center shadow-2xl relative border border-gray-50">
+            <button onClick={() => setShowCloseModal(false)} className="absolute top-6 right-6 text-gray-300 hover:text-black transition-colors">✕</button>
+            <div className="w-16 h-16 bg-blue-50 rounded-full flex items-center justify-center mb-6 text-blue-500 text-3xl font-bold">i</div>
+            <h2 className="text-2xl font-bold mb-4 text-black">Закрити збір?</h2>
+            <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+              Ви впевнені, що хочете закрити збір <br/>
+              <span className="text-black font-bold">"Навчання комп'ютерної грамотності для людей похилого віку"</span>?
+            </p>
+            <div className="bg-gray-50 rounded-2xl p-4 mb-8 flex gap-3 text-left">
+               <span className="text-blue-500 font-bold">✓</span>
+               <p className="text-[10px] text-gray-500 font-medium">
+                 Після закриття збору ви зможете завантажити звіт. Всі підписники та донори отримають сповіщення про завершення.
+               </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4 w-full">
+              <button onClick={() => setShowCloseModal(false)} className="py-4 border border-gray-100 rounded-2xl font-bold text-sm text-black hover:bg-gray-50 transition-all">Скасувати</button>
+              <button onClick={() => {setShowCloseModal(false); navigate('/home');}} className="py-4 bg-black text-white rounded-2xl font-bold text-sm shadow-lg hover:bg-zinc-800 transition-all">Закрити збір</button>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Нижня панель навігації */}
       <nav className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-gray-50 px-10 py-5 flex justify-between items-center z-50">
@@ -139,3 +167,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;
