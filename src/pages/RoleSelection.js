@@ -7,11 +7,14 @@ const StarIcon = () => <span className="w-6 h-6">⭐</span>;
 const OrganizationIcon = () => <span className="w-6 h-6">🏢</span>;
 const UserIcon = () => <span className="w-6 h-6">👤</span>;
 
-const roles = [
+export const RoleSelection = () => {
+  const navigate = useNavigate();
+
+ const roles = [
   {
     id: 'volunteer',
     title: 'Волонтер',
-    description: 'Я хочу допомагати та брати участь у проєктах',
+    desc: 'Я хочу допомагати та брати участь у проєктах',
     features: ['Доступ до волонтерських можливостей', 'Збір досягнень', 'Відстеження годин'],
     icon: <StarIcon />,
     path: '/register/volunteer'
@@ -19,7 +22,7 @@ const roles = [
   {
     id: 'organization',
     title: 'Організація',
-    description: 'Я представляю організацію чи фонд',
+    desc: 'Я представляю організацію чи фонд',
     features: ['Створення зборів коштів', 'Публікація проєктів', 'Пошук волонтерів'],
     icon: <OrganizationIcon />,
     path: '/register/organization'
@@ -27,39 +30,12 @@ const roles = [
   {
     id: 'user',
     title: 'Користувач',
-    description: 'Я хочу підтримувати та спостерігати',
+    desc: 'Я хочу підтримувати та спостерігати',
     features: ['Підтримка зборів', 'Перегляд проєктів', 'Спілкування'],
     icon: <UserIcon />,
     path: '/login'
   }
 ];
-
-export const RoleSelection = () => {
-  const navigate = useNavigate();
-
-  const roles = [
-    {
-      id: 'volunteer',
-      title: 'Волонтер',
-      desc: 'Я хочу допомагати та брати участь у проєктах',
-      icon: '⭐',
-      path: '/login'
-    },
-    {
-      id: 'organization',
-      title: 'Організація',
-      desc: 'Я представляю організацію чи фонд',
-      icon: '🏢',
-      path: '/register/organization' // Шлях до другого фото
-    },
-    {
-      id: 'user',
-      title: 'Користувач',
-      desc: 'Я хочу підтримувати та спостерігати',
-      icon: '👤',
-      path: '/login'
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-white flex flex-col items-center px-6 pt-12 pb-10 relative">
