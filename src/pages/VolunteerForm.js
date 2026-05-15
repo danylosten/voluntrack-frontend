@@ -11,8 +11,11 @@ export const VolunteerForm = () => {
   if (isSubmitted) {
     return (
       <EmailVerification 
-        onConfirm={() => navigate('/home')} 
-        onLoginInstead={() => navigate('/login')} 
+      onConfirm={() => {
+      localStorage.setItem('userRole', 'volunteer'); // Зберігаємо роль
+      navigate('/home');
+      }} 
+      onLoginInstead={() => navigate('/login')} 
       />
     );
   }
