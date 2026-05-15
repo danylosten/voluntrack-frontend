@@ -153,6 +153,59 @@ const OrganizationContent = ({ navigate, setShowCloseModal }) => (
     </div>
   </>
 );
+// --- 3. КОНТЕНТ ДЛЯ КОРИСТУВАЧА (СТРІЧКА) ---
+const UserContent = ({ navigate }) => (
+  <>
+    <header className="px-6 pt-10 pb-6">
+      <h1 className="text-3xl font-medium text-black mb-1">Стрічка зборів</h1>
+      <p className="text-gray-500 text-sm">Знайдіть проєкт, який хочете підтримати</p>
+    </header>
+
+    {/* Пошук / Фільтри */}
+    <div className="px-6 mb-8">
+      <div className="relative">
+        <input 
+          type="text" 
+          placeholder="Пошук зборів..." 
+          className="w-full p-4 pl-12 bg-gray-50 border border-gray-100 rounded-2xl outline-none focus:border-black transition-all"
+        />
+        <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl">🔍</span>
+      </div>
+    </div>
+
+    {/* Список доступних зборів */}
+    <div className="px-6 space-y-6">
+      {[1, 2].map((item) => (
+        <div key={item} className="border border-gray-100 rounded-[32px] overflow-hidden bg-white shadow-sm">
+          <div className="p-4 flex items-center gap-3">
+            <div className="w-10 h-10 bg-zinc-100 rounded-full flex items-center justify-center font-bold">Ф</div>
+            <div>
+              <p className="font-bold text-sm">Фонд "Крила Надії"</p>
+              <p className="text-[10px] text-blue-500 font-bold uppercase">Активний збір</p>
+            </div>
+          </div>
+          
+          <img 
+            src={item === 1 ? "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=600" : "https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=600"} 
+            className="w-full h-48 object-cover px-4 rounded-[24px]" 
+            alt="project" 
+          />
+
+          <div className="p-5">
+            <h4 className="font-bold text-lg mb-2">Медичне обладнання для дитячої лікарні</h4>
+            <div className="w-full h-2 bg-gray-100 rounded-full mb-4">
+              <div className="w-[45%] h-full bg-black rounded-full"></div>
+            </div>
+            <div className="flex justify-between items-center">
+              <span className="text-sm font-bold">12 400 / 30 000 грн</span>
+              <button className="px-6 py-2 bg-black text-white rounded-xl font-bold text-sm">Підтримати</button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </>
+);
 
 // --- ГОЛОВНИЙ КОМПОНЕНТ HOME ---
 export const Home = () => {
@@ -166,17 +219,17 @@ export const Home = () => {
     <div className="min-h-screen bg-white flex flex-col pb-32 relative">
       
       {/* ДИНАМІЧНИЙ ВМІСТ */}
-      <main className="flex-1">
-        {userRole === 'volunteer' && (
-          <VolunteerContent navigate={navigate} setShowCloseModal={setShowCloseModal} />
-        )}
-        {userRole === 'organization' && (
-          <OrganizationContent navigate={navigate} />
-        )}
-        {userRole === 'user' && (
-          <div className="p-10 text-center text-gray-400">Контент для звичайного користувача</div>
-        )}
-      </main>
+    <main className="flex-1">
+      {userRole === 'volunteer' && (
+        <VolunteerContent navigate={navigate} setShowCloseModal={setShowCloseModal} />
+      )}
+      {userRole === 'organization' && (
+        <OrganizationContent navigate={navigate} setShowCloseModal={setShowCloseModal} />
+      )}
+      {userRole === 'user' && (
+        <UserContent navigate={navigate} /> // Тепер тут стрічка
+      )}
+    </main>
 
       {/* МОДАЛКА (Спільна для всіх) */}
       {showCloseModal && (

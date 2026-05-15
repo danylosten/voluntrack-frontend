@@ -33,7 +33,7 @@ export const RoleSelection = () => {
     desc: 'Я хочу підтримувати та спостерігати',
     features: ['Підтримка зборів', 'Перегляд проєктів', 'Спілкування'],
     icon: <UserIcon />,
-    path: '/login'
+    path: '/register/user'
   }
 ];
 

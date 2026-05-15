@@ -11,7 +11,7 @@ import Home from './pages/Home';
 import { CreateProject } from './pages/CreateProject';
 import { EditProject } from './pages/EditProject';
 import { ProjectStats } from './pages/ProjectStats';
-
+import { UserForm } from './pages/UserForm';
 import './App.css';
 
 function App() {
@@ -22,9 +22,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/role-selection" element={<RoleSelection />} />
         <Route path="/register/organization" element={<OrganizationForm />} />
+        <Route path="/register/user" element={<UserForm />} />
         <Route path="/home" element={<Home />} />
         <Route path="/register/volunteer" element={<VolunteerForm />} />
-        {/* Автоматичне повернення на головну, якщо адреса невірна */}
         <Route path="/create-project" element={<CreateProject />} />
         <Route path="/edit-project" element={<EditProject />} />
         <Route path="/project-stats" element={<ProjectStats />} />
