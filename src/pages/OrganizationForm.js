@@ -1,59 +1,26 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { EmailVerification } from './EmailVerification'; // Імпортуємо ваш готовий файл
 
 export const OrganizationForm = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false); // Стан для зміни екрану
 
-  // Якщо реєстрація "завершена", показуємо екран перевірки пошти
+  // Якщо реєстрація "завершена", показуємо ваш готовий екран перевірки пошти
   if (isSubmitted) {
     return (
-      <div className="min-h-screen bg-white flex flex-col items-center justify-center p-6 relative overflow-hidden">
-        {/* Фонові плями як на макеті */}
-        <div className="absolute top-[-10%] left-[-10%] w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-50"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-gray-100 rounded-full blur-3xl opacity-50"></div>
-
-        <div className="relative z-10 flex flex-col items-center max-w-md w-full text-center">
-          <div className="bg-gray-50 p-6 rounded-full mb-8">
-            <svg className="w-12 h-12 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
-
-          <h2 className="text-3xl font-medium mb-3">Перевірте вашу пошту</h2>
-          <p className="text-gray-500 mb-2">Ми відправили лист з підтвердженням на адресу:</p>
-          <p className="font-bold mb-8 text-black text-lg">your@email.com</p>
-
-          <p className="text-gray-400 text-sm mb-10 px-4">
-            Натисніть на посилання у листі, щоб завершити реєстрацію. Якщо ви не бачите листа, перевірте папку "Спам".
-          </p>
-
-          <div className="w-full space-y-4">
-            <button 
-              onClick={() => navigate('/home')} 
-              className="w-full py-4 bg-black text-white rounded-full font-bold shadow-lg hover:bg-zinc-800 transition-all"
-            >
-              Підтвердити email (демо)
-            </button>
-            
-            <button className="w-full py-4 bg-white border border-gray-100 rounded-full font-bold text-gray-700 flex items-center justify-center gap-2 hover:bg-gray-50 transition-all">
-              <span className="text-lg">↻</span> Відправити лист повторно
-            </button>
-          </div>
-
-          <button 
-            onClick={() => setIsSubmitted(false)}
-            className="mt-8 text-gray-400 hover:text-black font-medium transition-colors"
-          >
-            Вже підтвердили? <span className="text-black font-bold underline">Увійти</span>
-          </button>
-        </div>
-      </div>
+      <EmailVerification 
+        onConfirm={() => {
+          localStorage.setItem('userRole', 'organization'); // Зберігаємо роль організації
+          navigate('/home');
+        }} 
+        onLoginInstead={() => navigate('/login')} 
+      />
     );
   }
 
-  // Основна форма реєстрації
+  // Основна форма реєстрації (залишилася без змін, як ви просили)
   return (
     <div className="min-h-screen bg-zinc-900 flex items-center justify-center p-6">
       <div className="w-full max-w-xl bg-white rounded-[40px] p-10 relative shadow-2xl">
