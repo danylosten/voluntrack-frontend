@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { HashRouter } from 'react-router-dom'; // Використовуємо HashRouter для Electron
-import App from './App';
+import { HashRouter } from 'react-router-dom';
+import App from './App'; // Імпорт без {}
 import './index.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

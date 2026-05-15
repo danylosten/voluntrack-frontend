@@ -37,33 +37,52 @@ const roles = [
 export const RoleSelection = () => {
   const navigate = useNavigate();
 
-  return (
-    <div className="min-h-screen bg-white flex flex-col items-center px-6 pt-12 pb-10 relative overflow-hidden">
-      {/* Фонові плями */}
-      <div className="absolute top-20 left-0 w-80 h-80 bg-gray-100 rounded-full blur-3xl opacity-60 -translate-x-1/2"></div>
-      
-      <div className="relative z-10 w-full max-w-2xl flex flex-col items-center">
-        <BackButton onClick={() => navigate('/')} />
+  const roles = [
+    {
+      id: 'volunteer',
+      title: 'Волонтер',
+      desc: 'Я хочу допомагати та брати участь у проєктах',
+      icon: '⭐',
+      path: '/login'
+    },
+    {
+      id: 'organization',
+      title: 'Організація',
+      desc: 'Я представляю організацію чи фонд',
+      icon: '🏢',
+      path: '/register/organization' // Шлях до другого фото
+    },
+    {
+      id: 'user',
+      title: 'Користувач',
+      desc: 'Я хочу підтримувати та спостерігати',
+      icon: '👤',
+      path: '/login'
+    }
+  ];
 
-        <h1 className="text-3xl font-medium text-black mt-6 mb-2 text-center">Приєднуйтесь до Voluntrack</h1>
+  return (
+    <div className="min-h-screen bg-white flex flex-col items-center px-6 pt-12 pb-10 relative">
+      <div className="w-full max-w-2xl flex flex-col items-center">
+        <BackButton onClick={() => navigate('/')} />
         
-        <p className="text-sm text-gray-500 mb-8 text-center">
-          Вже маєте акаунт? <span onClick={() => navigate('/login')} className="font-semibold text-black cursor-pointer hover:underline">Увійти</span>
-        </p>
+        <h1 className="text-3xl font-medium text-black mt-6 mb-8 text-center">
+          Приєднуйтесь до Voluntrack
+        </h1>
 
         <div className="w-full space-y-4">
           {roles.map((role) => (
             <button
               key={role.id}
               onClick={() => navigate(role.path)}
-              className="w-full text-left bg-white border border-gray-200 rounded-3xl p-6 flex items-start gap-5 hover:border-black hover:shadow-md transition-all group"
+              className="w-full text-left bg-white border border-gray-100 rounded-[32px] p-6 flex items-start gap-5 hover:border-black transition-all group"
             >
-              <div className="bg-gray-50 p-4 rounded-full flex-shrink-0 group-hover:bg-gray-100">
+              <div className="bg-gray-50 p-4 rounded-full text-2xl group-hover:bg-gray-100">
                 {role.icon}
               </div>
-              <div className="flex-1">
-                <h3 className="font-medium text-lg text-black">{role.title}</h3>
-                <p className="text-sm text-gray-500">{role.description}</p>
+              <div>
+                <h3 className="font-bold text-lg text-black">{role.title}</h3>
+                <p className="text-sm text-gray-400">{role.desc}</p>
               </div>
             </button>
           ))}
