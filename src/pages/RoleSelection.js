@@ -14,7 +14,7 @@ const roles = [
     description: 'Я хочу допомагати та брати участь у проєктах',
     features: ['Доступ до волонтерських можливостей', 'Збір досягнень', 'Відстеження годин'],
     icon: <StarIcon />,
-    path: '/login'
+    path: '/register/volunteer'
   },
   {
     id: 'organization',
