@@ -2,6 +2,38 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BackButton } from '../components/BackButton';
 
+// Іконки (можеш вставити свої SVG тут, як було раніше)
+const StarIcon = () => <span className="w-6 h-6">⭐</span>;
+const OrganizationIcon = () => <span className="w-6 h-6">🏢</span>;
+const UserIcon = () => <span className="w-6 h-6">👤</span>;
+
+const roles = [
+  {
+    id: 'volunteer',
+    title: 'Волонтер',
+    description: 'Я хочу допомагати та брати участь у проєктах',
+    features: ['Доступ до волонтерських можливостей', 'Збір досягнень', 'Відстеження годин'],
+    icon: <StarIcon />,
+    path: '/register/volunteer'
+  },
+  {
+    id: 'organization',
+    title: 'Організація',
+    description: 'Я представляю організацію чи фонд',
+    features: ['Створення зборів коштів', 'Публікація проєктів', 'Пошук волонтерів'],
+    icon: <OrganizationIcon />,
+    path: '/register/organization'
+  },
+  {
+    id: 'user',
+    title: 'Користувач',
+    description: 'Я хочу підтримувати та спостерігати',
+    features: ['Підтримка зборів', 'Перегляд проєктів', 'Спілкування'],
+    icon: <UserIcon />,
+    path: '/login'
+  }
+];
+
 export const RoleSelection = () => {
   const navigate = useNavigate();
 
