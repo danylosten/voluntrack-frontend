@@ -12,6 +12,11 @@ import { CreateProject } from './pages/CreateProject';
 import { EditProject } from './pages/EditProject';
 import { ProjectStats } from './pages/ProjectStats';
 import { UserForm } from './pages/UserForm';
+import Notifications from './pages/Notifications';
+import Chat from './pages/Chat';
+import ChatDialog from './pages/ChatDialog';
+import BottomNav from './components/BottomNav';
+
 import './App.css';
 
 function App() {
@@ -28,8 +33,13 @@ function App() {
         <Route path="/create-project" element={<CreateProject />} />
         <Route path="/edit-project" element={<EditProject />} />
         <Route path="/project-stats" element={<ProjectStats />} />
+        <Route path="/notifications" element={<Notifications />} />
+        <Route path="/chat" element={<Chat />} /> 
+        <Route path="/chat/:id" element={<ChatDialog />} /> 
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <BottomNav />
     </div>
   );
 }
